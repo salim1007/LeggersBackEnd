@@ -94,7 +94,7 @@ class CategoryController extends Controller
     
                 return response()->json([
                     'status'=>200,
-                    'message'=>'Category Update Successfully'
+                    'message'=>'Category Updated Successfully',
                 ]);
 
             }else{

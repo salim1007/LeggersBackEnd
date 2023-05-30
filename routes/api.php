@@ -18,7 +18,13 @@ Route::put('update-category/{id}', [CategoryController::class, 'update']);
 
 //Product
 Route::post('add-product', [ProductController::class, 'add']);
-Route::get('view-products', [ProductController::class, 'view']);
+Route::get('view-product-boykids', [ProductController::class, 'boykids']);
+Route::get('view-product-girlkids', [ProductController::class, 'girlkids']);
+Route::get('view-product-menOfficial', [ProductController::class, 'menOfficial']);
+Route::get('view-product-menCasual', [ProductController::class, 'menCasual']);
+Route::get('view-product-womenOfficial', [ProductController::class, 'womenOfficial']);
+Route::get('view-product-womenCasual', [ProductController::class, 'womenCasual']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
