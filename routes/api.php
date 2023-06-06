@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\UserController;
@@ -24,6 +25,17 @@ Route::get('view-product-menOfficial', [ProductController::class, 'menOfficial']
 Route::get('view-product-menCasual', [ProductController::class, 'menCasual']);
 Route::get('view-product-womenOfficial', [ProductController::class, 'womenOfficial']);
 Route::get('view-product-womenCasual', [ProductController::class, 'womenCasual']);
+Route::get('edit-product/{id}', [ProductController::class, 'edit']);
+Route::put('update-product/{id}', [ProductController::class, 'update']);
+
+Route::get('viewproductdetails/{categoryid}/{section}/{namee}', [ProductController::class, 'getProductDetails']);
+
+Route::get('fetch-products', [ProductController::class, 'allproducts']);
+
+//Cart........
+Route::post('add-to-cart', [CartController::class, 'add']);
+Route::get('cart', [CartController::class, 'viewCart']);
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
