@@ -14,7 +14,7 @@ class CategoryController extends Controller
             'category'=>'required|string',
             'origin'=>'required|string',
             'brandName'=>'required|string',
-            'section'=>'required|string',
+            'freshness'=>'required|string',
             'description'=>'required|string',
         ]);
 
@@ -29,7 +29,7 @@ class CategoryController extends Controller
             $category->category = $request->input('category');
             $category->origin = $request->input('origin');
             $category->brandName =$request->input('brandName');
-            $category->section =$request->input('section');
+            $category->freshness =$request->input('freshness');
             $category->description =$request->input('description');
             $category->status = $request->input('status');
             $category->save();
@@ -70,7 +70,7 @@ class CategoryController extends Controller
             'category'=>'required|string',
             'origin'=>'required|string',
             'brandName'=>'required|string',
-            'section'=>'required|string',
+            'freshness'=>'required|string',
             'description'=>'required|string',
         ]);
 
@@ -87,7 +87,7 @@ class CategoryController extends Controller
                 $category->category = $request->input('category');
                 $category->origin = $request->input('origin');
                 $category->brandName =$request->input('brandName');
-                $category->section =$request->input('section');
+                $category->freshness =$request->input('freshness');
                 $category->description =$request->input('description');
                 $category->status = $request->input('status');
                 $category->save();

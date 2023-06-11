@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('size');
             $table->string('image')->nullable();
             $table->longText('description');
-            $table->string('popular')->default('0')->nullable();
-            $table->string('featured')->default('0')->nullable();
-            $table->string('status')->default('0');
+            $table->boolean('popular')->default(false);
+            $table->boolean('featured')->default(false);
+            $table->boolean('status')->default(false);
             $table->timestamps();
 
         });

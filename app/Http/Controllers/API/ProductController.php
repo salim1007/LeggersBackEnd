@@ -31,7 +31,7 @@ class ProductController extends Controller
     }
     public function menOfficial()
     {
-        $menOfficial = Product::where('prSection', 'Official(M)')->get();
+        $menOfficial = Product::where('prSection', 'Official (M)')->get();
         return response()->json([
             'status' => 200,
             'menOfficial' => $menOfficial,
@@ -39,7 +39,7 @@ class ProductController extends Controller
     }
     public function menCasual()
     {
-        $menCasual = Product::where('prSection', 'Casual(M)')->get();
+        $menCasual = Product::where('prSection', 'Casual (M)')->get();
         return response()->json([
             'status' => 200,
             'menCasual' => $menCasual,
@@ -47,7 +47,7 @@ class ProductController extends Controller
     }
     public function womenOfficial()
     {
-        $womenOfficial = Product::where('prSection', 'Official(W)')->get();
+        $womenOfficial = Product::where('prSection', 'Official (W)')->get();
         return response()->json([
             'status' => 200,
             'womenOfficial' => $womenOfficial,
@@ -55,7 +55,7 @@ class ProductController extends Controller
     }
     public function womenCasual()
     {
-        $womenCasual = Product::where('prSection', 'Casual(W)')->get();
+        $womenCasual = Product::where('prSection', 'Casual (W)')->get();
         return response()->json([
             'status' => 200,
             'womenCasual' => $womenCasual,

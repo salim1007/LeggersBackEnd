@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('origin');
             $table->string('brandName');
-            $table->string('section');
+            $table->string('freshness');
             $table->string('description');
             $table->string('status')->default('0');
             $table->timestamps();

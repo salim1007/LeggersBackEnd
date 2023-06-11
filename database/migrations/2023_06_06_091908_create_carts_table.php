@@ -17,6 +17,7 @@ class CreateCartsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->string('product_brand');
             $table->string('product_name');
+            $table->integer('product_qty')->default(1);
             $table->string('product_image');
             $table->integer('product_sellPrice');
             $table->string('product_colour');
