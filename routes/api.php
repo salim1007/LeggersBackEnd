@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\CheckoutController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
@@ -38,7 +39,8 @@ Route::get('cart', [CartController::class, 'viewCart']);
 Route::put('cart-updateqty/{cart_id}/{scope}', [CartController::class, 'updateQty']);
 Route::delete('delete-cartItem/{cart_id}', [CartController::class, 'deleteCartItem']);
 
-
+//Orders......
+Route::post('place-order', [CheckoutController::class, 'placeorder']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

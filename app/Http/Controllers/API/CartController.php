@@ -68,6 +68,7 @@ class CartController extends Controller
         }
     }
 
+    
     public function viewCart()
     {
         if (auth('sanctum')->check()) {
