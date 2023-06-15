@@ -18,7 +18,7 @@ Route::get('edit-category/{id}', [CategoryController::class, 'edit']);
 Route::put('update-category/{id}', [CategoryController::class, 'update']);
 
 
-//Product
+//Products
 Route::post('add-product', [ProductController::class, 'add']);
 Route::get('view-product-boykids', [ProductController::class, 'boykids']);
 Route::get('view-product-girlkids', [ProductController::class, 'girlkids']);
@@ -28,6 +28,7 @@ Route::get('view-product-womenOfficial', [ProductController::class, 'womenOffici
 Route::get('view-product-womenCasual', [ProductController::class, 'womenCasual']);
 Route::get('edit-product/{id}', [ProductController::class, 'edit']);
 Route::put('update-product/{id}', [ProductController::class, 'update']);
+Route::get('getAllProducts', [ProductController::class, 'getAllProducts']);
 
 Route::get('viewproductdetails/{categoryid}/{section}/{namee}', [ProductController::class, 'getProductDetails']);
 

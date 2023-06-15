@@ -227,4 +227,19 @@ class ProductController extends Controller
             ]);
         }
     }
+    public function getAllProducts(){
+        $product = Product::where('status', '1')->get();
+        if($product){
+            return response()->json([
+                'status'=>200,
+                'product'=>$product,
+            ]);
+        }else{
+            return response()->json([
+                'status'=>404,
+                'message'=>'Product Not Found!',
+            ]);
+
+        }
+    }
 }
