@@ -242,4 +242,31 @@ class ProductController extends Controller
 
         }
     }
+
+    public function delete($id){
+        if (auth('sanctum')->check()) {
+            $user_id = auth('sanctum')->user()->id;
+           $product = Product::where('id', $id)->where('status', '1')->first();
+            if($product){
+               $product->delete();
+
+                return response()->json([
+                    'status'=>200,
+                    'message'=>'Product Deleted',
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Product Not Found! ',
+                ]);
+            }
+
+        }else{
+            return response()->json([
+                'status' => 401,
+                'message' => 'Login to Continue ',
+            ]);
+        }
+       
+    }
 }

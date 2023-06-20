@@ -46,7 +46,7 @@ class CheckoutController extends Controller
                 $order->zip = $request->input("zip");
                 $order->postalcode = $request->input("postalcode");
 
-                $order->payment_mode = "COD";
+                $order->payment_mode = "COD";   //cash on delivery
                 $order->tracking_no = "leggerzcom".rand(1111,9999);
                 $order->save();
 
