@@ -10,63 +10,64 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function register(Request $request) { 
-        $validator = Validator::make($request->all(),[
-            'firstname'=>'required|string|max:40',
-            'midname'=>'required|string|max:40',
-            'surname'=>'required|string|max:40',
-            'phoneNo'=>'required|integer',
-            'email'=>'required|email|unique:users,email|max:191',
-            'password'=>'required|min:8|confirmed',
-            'password_confirmation'=>'required'
-            
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required|string|max:40',
+            'midname' => 'required|string|max:40',
+            'surname' => 'required|string|max:40',
+            'phoneNo' => 'required|integer',
+            'email' => 'required|email|unique:users,email|max:191',
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required'
+
         ]);
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json([
-                'status'=>401,
-                'message'=>$validator->messages(),
+                'status' => 401,
+                'message' => $validator->messages(),
             ]);
-        }else{
+        } else {
             $user = User::create([
-                'firstname'=>$request->firstname,
-                'midname'=>$request->midname,
-                'surname'=>$request->surname,
-                'phoneNo'=>$request->phoneNo,
-                'email'=>$request->email,
-                'password'=> Hash::make($request->password),
+                'firstname' => $request->firstname,
+                'midname' => $request->midname,
+                'surname' => $request->surname,
+                'phoneNo' => $request->phoneNo,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
             ]);
 
             $token = $user->createToken($user->email . '_Token')->plainTextToken;
             return response()->json([
-                'status'=>200,
-                'token'=>$token,
-                'username'=>$user->firstname,
-                'message'=>'Registered Successfully',
+                'status' => 200,
+                'token' => $token,
+                'username' => $user->firstname,
+                'message' => 'Registered Successfully',
 
             ]);
-
         }
     }
-    public function login(Request $request){
-        $validator = Validator::make($request->all(),[
-            'email'=>'required|email|max:191',
-            'password'=>'required|min:8'
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:191',
+            'password' => 'required|min:8'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $errors = $validator->errors();
             return response()->json([
-                'message'=>$errors
+                'message' => $errors
             ]);
-        }else{
+        } else {
             $user = User::where('email', $request->email)->first();
 
-            if(!$user || !Hash::check($request->password, $user->password)){
+            if (!$user || !Hash::check($request->password, $user->password)) {
                 return response()->json([
                     'status' => 401,
                     'message' => "Invalid Credentials",
                 ]);
-            }else{
+            } else {
                 if ($user->role_as == 1) //1 = admin
                 {
                     $role = 'admin';
@@ -79,19 +80,30 @@ class UserController extends Controller
                     'status' => 200,
                     'username' => $user->firstname,
                     'token' => $token,
-                    'message' => 'Logged In Successfully',
+                    'message' => 'Logged In',
                     'role' => $role,
                 ]);
-            }   
+            }
         }
     }
-    public function logout(){
-        
+    public function logout()
+    {
+
         auth()->user()->tokens()->delete();
         return response()->json([
-            'status'=>200,
-            'message'=>'Logged Out Successfully',
+            'status' => 200,
+            'message' => 'Logged Out',
         ]);
     }
-}
 
+    public function adminData()
+    {
+        $adminData = User::where('role_as', '1')->get();
+        if ($adminData) {
+            return response()->json([
+                'status' => 200,
+                'admin' => $adminData,
+            ]);
+        }
+    }
+}

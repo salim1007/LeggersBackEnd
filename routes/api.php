@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
+Route::get('getAdminData', [UserController::class, 'adminData']);
 
 //Category
 Route::post('add-category', [CategoryController::class, 'add']);
@@ -47,4 +48,9 @@ Route::post('place-order', [CheckoutController::class, 'placeorder']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::post('logout', [UserController::class, 'logout']);
+
 });

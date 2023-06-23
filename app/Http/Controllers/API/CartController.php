@@ -63,7 +63,7 @@ class CartController extends Controller
         } else {
             return response()->json([
                 'status' => 401,
-                'message' => 'Login to Add Cart'
+                'message' => 'Login to Add to Cart'
             ]);
         }
     }
